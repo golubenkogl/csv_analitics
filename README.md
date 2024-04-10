@@ -5,6 +5,14 @@ The main approach will be tested on business applications but is meant to be ret
 
 ## Concept
 
+## How to start
+
+1. Update enviroment via given script
+
+```ssh
+> ./deploy.sh
+```
+
 ## Terminology
 
 - [Input Data](IN): A dedicated CSV file is given as a parameter or found in a predefined relative to the executable directory;
