@@ -1,11 +1,9 @@
 {
-    "apikey": "api-aV24czYWk6mG8591uvCwSZJGOdRS3eXL3QJtUN7GME",
+    "apikey": "MY_API_KEY",
     "buffsz": 300,
     "dialect": "excel",
     "ranges": [
-        "0-300",
-        "450-800",
-        "900-+"
+        "3-3"
     ],
     "colspec": [
         "hit:str",
@@ -23,7 +21,21 @@
         "request:str"
     ],
     "prompts": {
-        "step_1": "Analyze the website {presentation_url}",
-        "step_2": "Summarize the result"
+        "step_1":{
+            "IN1": "CSV:country",
+            "IN2": "CSV:zipcode",
+            "IN3": "CSV:zipcode",
+            "IN4": "CSV:state",
+            "IN5": "CSV:district",
+            "PROMPT": "Answer the following question based only on the provided context: You are highly professional business analytic. Company that you analyze located in country: {IN1}, zipcode: {IN2}, city: {IN3}, state: {IN4}, district: {IN5}. Based on provided information analyze if company located in USA or EU. If company located in USA and EU answer yes, if located somewhere else answer no. Answer with single word yes or no."
+         },
+         "step_2":{
+            "IN1": "GRABER:CSV:company_url",
+            "PROMPT": "Is company located in? Answer: {step_1}. You are provided with following information from company website {IN1}"
+         },
+         "step_3":{
+            "IN1": "GRABER:CSV:company_url",
+            "PROMPT": "Context: {step_2}. You are provided with following information from company website {IN1}. Check if company can be intrested in IT colsunting?"
+         }
     }
 }

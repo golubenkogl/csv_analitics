@@ -36,7 +36,7 @@ from typing import (
 
 import numpy as np
 from validator_collection import validators  # type: ignore[import-untyped]
-
+from LLMProcessor import process
 
 __version__ = "0.1"
 
@@ -638,7 +638,7 @@ if __name__ == "__main__":
                 "InputRecord", *config["colspec"]
             )
 
-            orec_cls = rec_cls.derive_class("OutputRecord", "result:?str")
+            orec_cls = None
 
             # Parse ranges
             ranges = parse_ranges(*config["ranges"])
@@ -651,9 +651,16 @@ if __name__ == "__main__":
             # This here is parses on row at a time, creates a new record with
             # 'result' column, sets its value to the result of processing
             # and immediately appends the record to the output CSV file
-            for rec in csv_parser:
-
-                orec = orec_cls(*rec, "RESULT")  # type: ignore[call-arg]
+            flag = True
+            for rec in csv_parser:              
+                results = process(rec, config["prompts"], config["apikey"])
+                if flag:
+                    output_cols = []
+                    for i in range(len(results)):
+                        output_cols.append("result{i}:?str".format(i=i))
+                    orec_cls = rec_cls.derive_class("OutputRecord", *output_cols)
+                    flag = False
+                orec = orec_cls(*rec, *results)  # type: ignore[call-arg]
 
                 unparse_csv(args.output, orec)
 
