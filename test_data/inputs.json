@@ -1,0 +1,29 @@
+{
+    "apikey": "api-aV24czYWk6mG8591uvCwSZJGOdRS3eXL3QJtUN7GME",
+    "buffsz": 300,
+    "dialect": "excel",
+    "ranges": [
+        "0-300",
+        "450-800",
+        "900-+"
+    ],
+    "colspec": [
+        "hit:str",
+        "exhibitor:str",
+        "country:str",
+        "zipcode:?str",
+        "city:?str",
+        "state:?str",
+        "district:?str",
+        "company_url:url",
+        "booth:?str",
+        "presentation_url:url",
+        "unknown_1:?str",
+        "unknown_2:?str",
+        "request:str"
+    ],
+    "prompts": {
+        "step_1": "Analyze the website {presentation_url}",
+        "step_2": "Summarize the result"
+    }
+}
