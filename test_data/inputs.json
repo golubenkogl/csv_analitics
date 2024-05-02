@@ -1,5 +1,7 @@
 {
-    "apikey": "MY_API_KEY",
+    "apikey": "<API_KEY>",
+    "use_translator": false,
+    "GOOGLE_APPLICATION_CREDENTIALS": "./test_data/service-account-file.json",
     "buffsz": 300,
     "dialect": "excel",
     "ranges": [
