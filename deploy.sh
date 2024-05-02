@@ -5,6 +5,7 @@ ENV_NAME=".venv"
 # Check if virtual environment already exists
 if [ ! -f "$ENV_NAME/bin/activate" ]; then
   echo "Creating a new virtual environment..."
+  sudo apt-get install python3.10-venv
   python3 -m venv $ENV_NAME
 else
   echo "Virtual environment already exists."

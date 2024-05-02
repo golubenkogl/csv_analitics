@@ -9,9 +9,20 @@ The main approach will be tested on business applications but is meant to be ret
 
 1. Update enviroment via given script
 
-```ssh
+```sh
 > ./deploy.sh
 ```
+
+2. Load needed information to the **/test_data** folder in **CSV** format.
+3. Update **inputs.json** file description and processing prompts, if analytical process deviates from the initial.
+4. Run processing sequence:
+5. To activate web-translator - shall be added/apdated credentials for the GoogleAPI (service-account-file.json)
+
+```sh
+./demo/analyze.py -i ./test_data/inputs.csv  --config ./test_data/inputs.json -k sk-proj-*******************************************
+```
+
+where the __sk-proj-*********************************************** is an API key from your OpenAPI LLM.
 
 ## Terminology
 
@@ -23,7 +34,7 @@ The main approach will be tested on business applications but is meant to be ret
   - by the request get data from the (n) line of the input file
   - by request append line to the output file, with a copy of input information, extended by the new given data array
   - resolve file location issues
-- [LLM Processor](ANALYZER): Class/module/program dedicated to cooperating with external LLM model via LangChain framework, and process given data with a given sequence of actions with given prompts for each stage. 
+- [LLM Processor](ANALYZER): Class/module/program dedicated to cooperating with external LLM model via LangChain framework, and process given data with a given sequence of actions with given prompts for each stage.
 - [Processor Instructions](INSTRUCTIONS) The sequence of **Processor** shall be described by an editable JSON file with the proposed format (could be revised):
 
 ```json
@@ -99,4 +110,4 @@ Field OUT refers to the location results of LLM processing to be stored.
 
 ## Done
 
-## TODO List 
+## TODO List

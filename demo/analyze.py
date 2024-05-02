@@ -5,7 +5,6 @@ Draft of the base implementation of CSV-LLM-CSV processing module.
 This is currently for demonstation purposes only.
 """
 from __future__ import annotations
-
 import sys
 
 import argparse
@@ -15,7 +14,16 @@ import json
 
 from abc import ABC
 from functools import lru_cache
-from itertools import islice, batched
+from itertools import islice
+
+def batched(iterable, n):
+    # batched('ABCDEFG', 3) → ABC DEF G
+    if n < 1:
+        raise ValueError('n must be at least one')
+    it = iter(iterable)
+    while batch := tuple(islice(it, n)):
+        yield batch
+
 from pathlib import Path
 
 from dataclasses import (
@@ -653,7 +661,7 @@ if __name__ == "__main__":
             # and immediately appends the record to the output CSV file
             flag = True
             for rec in csv_parser:              
-                results = process(rec, config["prompts"], config["apikey"])
+                results = process(rec, config)
                 if flag:
                     output_cols = []
                     for i in range(len(results)):
