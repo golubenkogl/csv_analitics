@@ -2,3 +2,5 @@ openai.key
 .venv
 !.venv/constraints.txt
 **/.DS_store
+.venv
+!.venv/constraints.txt
