@@ -5,7 +5,7 @@
     "buffsz": 300,
     "dialect": "excel",
     "ranges": [
-        "3-3"
+        "2179-2182"
     ],
     "colspec": [
         "hit:str",
@@ -17,10 +17,7 @@
         "district:?str",
         "company_url:url",
         "booth:?str",
-        "presentation_url:url",
-        "unknown_1:?str",
-        "unknown_2:?str",
-        "request:str"
+        "presentation_url:url"
     ],
     "prompts": {
         "step_1":{
@@ -38,6 +35,12 @@
          "step_3":{
             "IN1": "GRABER:CSV:company_url",
             "PROMPT": "Context: {step_2}. You are provided with following information from company website {IN1}. Check if company can be intrested in IT colsunting?"
+         },
+         "step_4":{
+            "IN1":"{step_1}",
+            "IN2":"{step_2}",
+            "IN3":"{step_3}",
+            "PROMPT": "Based on a given Context, provide percenteg of potential of cooperation with company, where 0% is - no common ground, 100% shall be immediatly processed. Unswer should include only percentage value.  Context:. {IN1}, {IN2}, {IN3}"
          }
     }
 }
