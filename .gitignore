@@ -4,4 +4,5 @@ openai.key
 !/.venv/constraints.txt
 *.pyc
 .env
-
+test_data/*output*.csv
+test_data/*private*.json
